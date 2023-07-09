@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>限流请求</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+</head>
+<body>
+
+    <button id="myButton">点击请求</button>
+    <div id="resultDiv"></div>
+
+    <script>
+        $(document).ready(function() {
+            $("#myButton").click(function() {
+                $.ajax({
+                    url: "http://localhost:8080/test/sendReq",
+                    type: "POST",
+                    success: function(result) {
+                        console.log("request_ok");
+                        $("#resultDiv").text(result); 
+                    },
+                    error: function(xhr, status, error) {
+                        console.log("request_error");
+                    }
+                });
+            });
+        });
+    </script>
+    
+</body>
+</html>
